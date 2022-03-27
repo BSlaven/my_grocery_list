@@ -1,0 +1,29 @@
+.item {
+  background-color: rgb(226, 234, 241);
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 4px;
+}
+
+.text {
+  margin-left: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  padding-right: 1rem;
+}
+
+.check {
+  color: rgb(0, 110, 0);
+}
+
+.trash {
+  margin-left: 0.8rem;
+  color: rgb(172, 0, 0);
+}
