@@ -6,8 +6,8 @@ function App() {
   return (
     <div className="App">
       <GroceryItem />
-      <GroceryItem />
-      <GroceryItem />
+      {/* <GroceryItem />
+      <GroceryItem /> */}
     </div>
   )
 }
