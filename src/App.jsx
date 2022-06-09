@@ -1,13 +1,11 @@
 import './App.css'
-import GroceryItem from './GroceryItem/GroceryItem';
+import GroceryList from './GroceryList/GroceryList';
 
 function App() {
 
   return (
     <div className="App">
-      <GroceryItem />
-      {/* <GroceryItem />
-      <GroceryItem /> */}
+      <GroceryList />
     </div>
   )
 }
