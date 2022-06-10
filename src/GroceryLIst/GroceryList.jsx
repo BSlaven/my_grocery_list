@@ -25,10 +25,21 @@ const GroceryList = () => {
     const value = e.target.value;
     setItemName(value);
   }
+
+  const formSubmitHandler = e => {
+    e.preventDefault();
+    storeItemsToStorage();
+  }
+
+  const storeItemsToStorage = () => {
+    const itemsToStore = [...items];
+    localStorage.setItem('grocery-items', JSON.stringify(itemsToStore));
+    fetchItemsFromStorage();
+  } 
   
   return (
     <div className={classes.list}>
-      <form>
+      <form onSubmit={formSubmitHandler}>
         <input 
           type="text"
           className={classes.itemInput}
