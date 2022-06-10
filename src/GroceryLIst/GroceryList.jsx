@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { MdOutlineDoubleArrow } from 'react-icons/md';
+
 import GroceryItem from '../GroceryItem/GroceryItem';
 
 import classes from './GroceryList.module.css';
@@ -22,16 +24,20 @@ const GroceryList = () => {
   const addItemName = e => {
     const value = e.target.value;
     setItemName(value);
-    console.log('calling addItemName function')
   }
   
   return (
     <div className={classes.list}>
-      <input 
-        type="text"
-        className={classes.itemInput}
-        onChange={addItemName}
-        value={selectedItem.name || itemName} />
+      <form>
+        <input 
+          type="text"
+          className={classes.itemInput}
+          onChange={addItemName}
+          value={selectedItem.name || itemName} />
+        <button>
+          <MdOutlineDoubleArrow />
+        </button>
+      </form>
       <GroceryItem />
       <GroceryItem />
       <GroceryItem />
