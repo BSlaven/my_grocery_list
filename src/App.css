@@ -1,9 +1,9 @@
 .App {
-  width: 90%;
-  max-width: 900px;
+  /* width: 90%;
+  max-width: 900px; */
   min-height: 100vh;
   margin: 0 auto;
-  padding: 2rem 1rem 1rem;
+  padding: 6rem 1rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
