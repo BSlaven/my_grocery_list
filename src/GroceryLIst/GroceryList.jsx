@@ -7,13 +7,14 @@ import classes from './GroceryList.module.css';
 const GroceryList = () => {
 
   const [ items, setItems ] = useState([]);
+  const [ selectedItem, setSelectedItem ] = useState({});
 
   useEffect(() => {
     fetchItemsFromStorage();
   }, []);
 
   const fetchItemsFromStorage = async () => {
-    const data = await JSON.parse(localStorage.getItems('grocery-items')) || [];
+    const data = await JSON.parse(localStorage.getItem('grocery-items')) || [];
     setItems(data);
   }
   
