@@ -16,8 +16,8 @@ const GroceryList = () => {
     fetchItemsFromStorage();
   }, []);
 
-  const fetchItemsFromStorage = async () => {
-    const data = await JSON.parse(localStorage.getItem('grocery-items')) || [];
+  const fetchItemsFromStorage = () => {
+    const data = JSON.parse(localStorage.getItem('grocery-items')) || [];
     setItems(data);
   }
 
@@ -29,12 +29,39 @@ const GroceryList = () => {
   const formSubmitHandler = e => {
     e.preventDefault();
     storeItemsToStorage();
+    setItemName('');
+  }
+
+  const createGroceryItem = (item) => {
+    const newItem = {
+      name: itemName
+    }
+    if(item.id) {
+      newItem.id = item.id;
+    } else {
+      newItem.id = Math.floor(Math.random() * 10000000000)
+    }
+    return newItem;
+  }
+
+  const addNewItemToList = (item) => {
+    const itemsToStore = [...items];
+    const newItem = createGroceryItem(selectedItem);
+    if(!item.id) {
+      itemsToStore.push(newItem);
+    } else {
+      const index = itemsToStore.findIndex(i => i.id === item.id);
+      itemsToStore.splice(index, 1, newItem);
+    }
+    setItems(itemsToStore);
   }
 
   const storeItemsToStorage = () => {
-    const itemsToStore = [...items];
-    localStorage.setItem('grocery-items', JSON.stringify(itemsToStore));
-    fetchItemsFromStorage();
+    addNewItemToList(selectedItem);
+    console.log(items);
+    localStorage.setItem('grocery-items', JSON.stringify(items));
+
+    // fetchItemsFromStorage();
   } 
   
   return (
