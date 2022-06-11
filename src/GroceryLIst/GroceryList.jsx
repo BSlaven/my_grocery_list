@@ -64,7 +64,7 @@ const GroceryList = () => {
   
   return (
     <div className={classes.list}>
-      <form onSubmit={formSubmitHandler}>
+      <form className={classes.form} onSubmit={formSubmitHandler}>
         <input 
           type="text"
           className={classes.itemInput}
@@ -74,6 +74,7 @@ const GroceryList = () => {
           <MdOutlineDoubleArrow />
         </button>
       </form>
+      <GroceryItem />
       <GroceryItem />
       <GroceryItem />
       <GroceryItem />
