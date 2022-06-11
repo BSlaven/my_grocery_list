@@ -58,10 +58,8 @@ const GroceryList = () => {
 
   const storeItemsToStorage = () => {
     addNewItemToList(selectedItem);
-    console.log(items);
     localStorage.setItem('grocery-items', JSON.stringify(items));
-
-    // fetchItemsFromStorage();
+    fetchItemsFromStorage();
   } 
   
   return (
