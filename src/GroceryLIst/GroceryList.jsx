@@ -64,16 +64,17 @@ const GroceryList = () => {
   
   return (
     <div className={classes.list}>
-      <form onSubmit={formSubmitHandler}>
+      <form className={classes.form} onSubmit={formSubmitHandler}>
         <input 
           type="text"
           className={classes.itemInput}
           onChange={addItemName}
           value={selectedItem.name || itemName} />
-        <button>
-          <MdOutlineDoubleArrow />
+        <button className={classes.addButton}>
+          <MdOutlineDoubleArrow className={classes.buttonIcon} />
         </button>
       </form>
+      <GroceryItem />
       <GroceryItem />
       <GroceryItem />
       <GroceryItem />
