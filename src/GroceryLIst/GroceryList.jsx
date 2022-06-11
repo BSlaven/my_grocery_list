@@ -73,10 +73,7 @@ const GroceryList = () => {
           <MdOutlineDoubleArrow className={classes.buttonIcon} />
         </button>
       </form>
-      <GroceryItem />
-      <GroceryItem />
-      <GroceryItem />
-      <GroceryItem />
+      {items && items.map(item => <GroceryItem key={item.id} {...item} />)}
     </div>
   )
 }
