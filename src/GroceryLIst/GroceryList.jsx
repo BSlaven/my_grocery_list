@@ -59,7 +59,19 @@ const GroceryList = () => {
 
   const storeItemsToStorage = (items) => {
     localStorage.setItem('grocery-items', JSON.stringify(items));
-  } 
+  }
+
+  const selectItem = id => {
+    const item = items.find(i => i.id === id);
+    setSelectedItem(item);
+    console.log('ITEM SELECTED: ', id);
+  }
+  
+  const deleteItem = id => {
+    const filteredItems = items.filter(item => item.id !== id);
+    storeItemsToStorage(filteredItems);
+    fetchItemsFromStorage();
+  }
   
   return (
     <div className={classes.list}>
@@ -73,7 +85,7 @@ const GroceryList = () => {
           <MdOutlineDoubleArrow className={classes.buttonIcon} />
         </button>
       </form>
-      {items && items.map(item => <GroceryItem key={item.id} {...item} />)}
+      {items && items.map(item => <GroceryItem key={item.id} selectItem={selectItem} deleteItem={deleteItem} {...item} />)}
     </div>
   )
 }
