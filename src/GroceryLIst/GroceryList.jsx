@@ -54,12 +54,10 @@ const GroceryList = () => {
       const index = itemsToStore.findIndex(i => i.id === item.id);
       itemsToStore.splice(index, 1, newItem);
     }
-    // setItems(itemsToStore);
     storeItemsToStorage(itemsToStore);
   }
 
   const storeItemsToStorage = (items) => {
-    // addNewItemToList(selectedItem);
     localStorage.setItem('grocery-items', JSON.stringify(items));
   } 
   
