@@ -70,8 +70,8 @@ const GroceryList = () => {
           className={classes.itemInput}
           onChange={addItemName}
           value={selectedItem.name || itemName} />
-        <button>
-          <MdOutlineDoubleArrow />
+        <button className={classes.addButton}>
+          <MdOutlineDoubleArrow className={classes.buttonIcon} />
         </button>
       </form>
       <GroceryItem />

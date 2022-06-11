@@ -20,7 +20,30 @@
   border: none;
   border-radius: 3px;
   outline: 2px solid rgb(197, 143, 252);
+  outline-offset: -2px;
   padding: 0.5rem 1rem;
   font-size: 1.1rem;
   flex-grow: 1;
+}
+
+.itemInput:is(:focus) {
+  outline: 2px solid rgb(149, 74, 224);
+}
+
+.addButton {
+  width: 50px;
+  background-color: rgb(70, 3, 126);
+  color: #fff;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addButton:is(:focus, :hover) {
+  background-color: rgb(53, 0, 97);
+
 }
