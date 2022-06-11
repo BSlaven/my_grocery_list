@@ -11,7 +11,8 @@ const GroceryList = () => {
   const [ items, setItems ] = useState([]);
   const [ selectedItem, setSelectedItem ] = useState({});
   const [ itemName, setItemName ] = useState('');
-  const [ error, setEror ] = useState('to nije dobro');
+  const [ error, setError ] = useState('');
+  const [ isValid, setIsValid ] = useState(false);
 
   useEffect(() => {
     fetchItemsFromStorage();
@@ -23,15 +24,18 @@ const GroceryList = () => {
   }
 
   const addItemName = e => {
-    const value = e.target.value;
+    const value = e.target.value.trim();
     setItemName(value);
   }
 
   const formSubmitHandler = e => {
     e.preventDefault();
-    addNewItemToList(selectedItem);
-    setItemName('');
-    fetchItemsFromStorage();
+    checkErrorState(itemName);
+    if(isValid) {
+      addNewItemToList();
+      fetchItemsFromStorage();
+      setItemName('');
+    }
   }
 
   const createGroceryItem = (item) => {
@@ -46,13 +50,13 @@ const GroceryList = () => {
     return newItem;
   }
 
-  const addNewItemToList = (item) => {
+  const addNewItemToList = () => {
     const itemsToStore = [...items];
     const newItem = createGroceryItem(selectedItem);
-    if(!item.id) {
+    if(!selectedItem.id) {
       itemsToStore.push(newItem);
     } else {
-      const index = itemsToStore.findIndex(i => i.id === item.id);
+      const index = itemsToStore.findIndex(i => i.id === selectedItem.id);
       itemsToStore.splice(index, 1, newItem);
     }
     storeItemsToStorage(itemsToStore);
@@ -61,6 +65,21 @@ const GroceryList = () => {
   const storeItemsToStorage = (items) => {
     localStorage.setItem('grocery-items', JSON.stringify(items));
   }
+
+  const checkErrorState = (value) => {
+    if(!value && !selectedItem.id) {
+      setError('You must enter some name');
+      setIsValid(false);
+      return;
+    }
+    if(selectedItem.id && !value) {
+      setError('You must enter name for existing item!')
+      setIsValid(false);
+      return;
+    }
+    setIsValid(true);
+  }
+
 
   const selectItem = id => {
     const item = items.find(i => i.id === id);
@@ -86,6 +105,7 @@ const GroceryList = () => {
           <MdOutlineDoubleArrow className={classes.buttonIcon} />
         </button>
       </form>
+      {error && <p className={classes.errorMessage}>{error}</p>}
       {items && items.map(item => <GroceryItem key={item.id} selectItem={selectItem} deleteItem={deleteItem} {...item} />)}
     </div>
   )
