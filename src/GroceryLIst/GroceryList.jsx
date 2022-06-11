@@ -64,7 +64,7 @@ const GroceryList = () => {
   const selectItem = id => {
     const item = items.find(i => i.id === id);
     setSelectedItem(item);
-    console.log('ITEM SELECTED: ', id);
+    setItemName(item.name);
   }
   
   const deleteItem = id => {
@@ -80,7 +80,7 @@ const GroceryList = () => {
           type="text"
           className={classes.itemInput}
           onChange={addItemName}
-          value={selectedItem.name || itemName} />
+          value={itemName || ''} />
         <button className={classes.addButton}>
           <MdOutlineDoubleArrow className={classes.buttonIcon} />
         </button>
