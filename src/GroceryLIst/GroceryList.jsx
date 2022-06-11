@@ -28,8 +28,9 @@ const GroceryList = () => {
 
   const formSubmitHandler = e => {
     e.preventDefault();
-    storeItemsToStorage();
+    addNewItemToList(selectedItem);
     setItemName('');
+    fetchItemsFromStorage();
   }
 
   const createGroceryItem = (item) => {
@@ -53,13 +54,13 @@ const GroceryList = () => {
       const index = itemsToStore.findIndex(i => i.id === item.id);
       itemsToStore.splice(index, 1, newItem);
     }
-    setItems(itemsToStore);
+    // setItems(itemsToStore);
+    storeItemsToStorage(itemsToStore);
   }
 
-  const storeItemsToStorage = () => {
-    addNewItemToList(selectedItem);
+  const storeItemsToStorage = (items) => {
+    // addNewItemToList(selectedItem);
     localStorage.setItem('grocery-items', JSON.stringify(items));
-    fetchItemsFromStorage();
   } 
   
   return (
