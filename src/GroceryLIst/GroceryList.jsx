@@ -11,6 +11,7 @@ const GroceryList = () => {
   const [ items, setItems ] = useState([]);
   const [ selectedItem, setSelectedItem ] = useState({});
   const [ itemName, setItemName ] = useState('');
+  const [ error, setEror ] = useState('to nije dobro');
 
   useEffect(() => {
     fetchItemsFromStorage();
