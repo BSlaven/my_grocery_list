@@ -8,7 +8,7 @@ const GroceryItem = ({ name, id }) => {
     <div className={classes.item}>
       <p className={classes.text}>{name}</p>
       <div className={classes.iconContainer}>
-        <AiTwotoneEdit className={classes.check} />
+        <AiTwotoneEdit className={classes.edit} />
         <FiTrash2 className={classes.trash} />
       </div>
     </div>

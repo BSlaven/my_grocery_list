@@ -19,11 +19,24 @@
   padding-right: 1rem;
 }
 
-.check {
+.edit {
   color: rgb(0, 110, 0);
+  border-radius: 50%;
+  font-size: 1.4rem;
+  padding: 0.5rem;
+  cursor: pointer; 
 }
 
 .trash {
   margin-left: 0.8rem;
   color: rgb(172, 0, 0);
+  border-radius: 50%;
+  font-size: 1.4rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.edit:is(:focus, :hover),
+.trash:is(:focus, :hover) {
+  background-color: #ccc;
 }
