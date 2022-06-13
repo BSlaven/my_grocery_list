@@ -11,6 +11,7 @@ const GroceryList = () => {
   const [ items, setItems ] = useState([]);
   const [ selectedItem, setSelectedItem ] = useState({});
   const [ itemName, setItemName ] = useState('');
+  const [ error, setError ] = useState('');
 
   useEffect(() => {
     fetchItemsFromStorage();
@@ -28,9 +29,13 @@ const GroceryList = () => {
 
   const formSubmitHandler = e => {
     e.preventDefault();
-    addNewItemToList(selectedItem);
-    setItemName('');
-    fetchItemsFromStorage();
+    const isValid = checkErrorState(itemName);
+    if(isValid) {
+      addNewItemToList();
+      fetchItemsFromStorage();
+      setItemName('');
+      setError('');
+    }
   }
 
   const createGroceryItem = (item) => {
@@ -45,13 +50,13 @@ const GroceryList = () => {
     return newItem;
   }
 
-  const addNewItemToList = (item) => {
+  const addNewItemToList = () => {
     const itemsToStore = [...items];
     const newItem = createGroceryItem(selectedItem);
-    if(!item.id) {
+    if(!selectedItem.id) {
       itemsToStore.push(newItem);
     } else {
-      const index = itemsToStore.findIndex(i => i.id === item.id);
+      const index = itemsToStore.findIndex(i => i.id === selectedItem.id);
       itemsToStore.splice(index, 1, newItem);
     }
     storeItemsToStorage(itemsToStore);
@@ -59,6 +64,15 @@ const GroceryList = () => {
 
   const storeItemsToStorage = (items) => {
     localStorage.setItem('grocery-items', JSON.stringify(items));
+  }
+
+  const checkErrorState = (value) => {
+    let isValid = true;
+    if(!value) {
+      setError('You must enter a name');
+      isValid = false;
+    }
+    return isValid;
   }
 
   const selectItem = id => {
@@ -85,6 +99,7 @@ const GroceryList = () => {
           <MdOutlineDoubleArrow className={classes.buttonIcon} />
         </button>
       </form>
+      {error && <p className={classes.errorMessage}>{error}</p>}
       {items && items.map(item => <GroceryItem key={item.id} selectItem={selectItem} deleteItem={deleteItem} {...item} />)}
     </div>
   )
