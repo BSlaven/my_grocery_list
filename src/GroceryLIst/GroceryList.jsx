@@ -35,6 +35,7 @@ const GroceryList = () => {
       addNewItemToList();
       fetchItemsFromStorage();
       setItemName('');
+      setIsValid(false);
     }
   }
 
@@ -67,20 +68,14 @@ const GroceryList = () => {
   }
 
   const checkErrorState = (value) => {
-    if(!value && !selectedItem.id) {
-      setError('You must enter some name');
-      setIsValid(false);
-      return;
-    }
-    if(selectedItem.id && !value) {
-      setError('You must enter name for existing item!')
+    if(!value) {
+      setError('You must enter a name');
       setIsValid(false);
       return;
     }
     setIsValid(true);
     setError('');
   }
-
 
   const selectItem = id => {
     const item = items.find(i => i.id === id);
