@@ -12,7 +12,6 @@ const GroceryList = () => {
   const [ selectedItem, setSelectedItem ] = useState({});
   const [ itemName, setItemName ] = useState('');
   const [ error, setError ] = useState('');
-  const [ isValid, setIsValid ] = useState(false);
 
   useEffect(() => {
     fetchItemsFromStorage();
@@ -24,18 +23,18 @@ const GroceryList = () => {
   }
 
   const addItemName = e => {
-    const value = e.target.value.trim();
+    const value = e.target.value;
     setItemName(value);
   }
 
   const formSubmitHandler = e => {
     e.preventDefault();
-    checkErrorState(itemName);
+    const isValid = checkErrorState(itemName);
     if(isValid) {
       addNewItemToList();
       fetchItemsFromStorage();
       setItemName('');
-      setIsValid(false);
+      setError('');
     }
   }
 
@@ -68,13 +67,12 @@ const GroceryList = () => {
   }
 
   const checkErrorState = (value) => {
+    let isValid = true;
     if(!value) {
       setError('You must enter a name');
-      setIsValid(false);
-      return;
+      isValid = false;
     }
-    setIsValid(true);
-    setError('');
+    return isValid;
   }
 
   const selectItem = id => {
