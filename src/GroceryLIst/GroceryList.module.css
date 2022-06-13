@@ -11,7 +11,7 @@
 
 .form {
   width: 100%;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   display: flex;
   gap: 0.5rem;
 }
@@ -45,4 +45,13 @@
 
 .addButton:is(:focus, :hover) {
   background-color: rgb(53, 0, 97);
+}
+
+.errorMessage {
+  color: rgb(241, 21, 21);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 0;
+  margin-left: 0.5rem;
+  align-self: flex-start;
 }
