@@ -51,7 +51,6 @@
   color: rgb(241, 21, 21);
   font-size: 0.8rem;
   font-weight: 600;
-  margin: 0;
-  margin-left: 0.5rem;
+  margin: 0 0 0.5rem 1rem;
   align-self: flex-start;
 }
