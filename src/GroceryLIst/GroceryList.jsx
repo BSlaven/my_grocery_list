@@ -101,7 +101,7 @@ const GroceryList = () => {
       </form>
       {error && <p className={classes.errorMessage}>{error}</p>}
       {items && items.map(item => <GroceryItem key={item.id} selectItem={selectItem} deleteItem={deleteItem} {...item} />)}
-      <button className={classes.celarAllBtn}>Clear all</button>
+      <button className={classes.clearAllBtn}>Clear all</button>
     </div>
   )
 }
