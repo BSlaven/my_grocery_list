@@ -68,3 +68,10 @@
 .clearAllBtn:is(:hover, :focus) {
   background-color: rgb(235, 235, 235);
 }
+
+.noItems {
+  color: #333;
+  font-size: 1.4rem;
+  margin: 0;
+  margin-top: 1rem;
+}
