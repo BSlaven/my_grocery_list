@@ -86,6 +86,11 @@ const GroceryList = () => {
     storeItemsToStorage(filteredItems);
     fetchItemsFromStorage();
   }
+
+  const clearAllItems = () => {
+    localStorage.setItem('grocery-items', JSON.stringify([]));
+    fetchItemsFromStorage();
+  }
   
   return (
     <div className={classes.list}>
@@ -101,6 +106,7 @@ const GroceryList = () => {
       </form>
       {error && <p className={classes.errorMessage}>{error}</p>}
       {items && items.map(item => <GroceryItem key={item.id} selectItem={selectItem} deleteItem={deleteItem} {...item} />)}
+      {items.length > 0 ? <button onClick={clearAllItems} className={classes.clearAllBtn}>Clear all</button> : null}
     </div>
   )
 }
